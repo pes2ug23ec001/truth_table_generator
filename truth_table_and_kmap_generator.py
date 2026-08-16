@@ -6,7 +6,7 @@ def gray_code(n):
     smaller = gray_code(n - 1)
     return ['0' + code for code in smaller] + ['1' + code for code in reversed(smaller)]
 
-# --- reuse your existing truth table logic ---
+
 var_input = input("Enter input variables: ")
 variables = var_input.split()
 expression = input("Enter the Boolean expression: ")
@@ -20,7 +20,7 @@ for combo in itertools.product([0, 1], repeat=n):
     result = int(eval(expression, {}, values))
     lookup[combo] = result
 
-# --- split variables into row-group and column-group ---
+
 half = n // 2
 row_vars = variables[:n - half]   # gets the larger half if odd
 col_vars = variables[n - half:]
@@ -28,7 +28,7 @@ col_vars = variables[n - half:]
 row_codes = gray_code(len(row_vars))
 col_codes = gray_code(len(col_vars))
 
-# --- print the K-map ---
+
 print("\nK-map:")
 print("      " + " ".join(col_codes) + "   <- " + "".join(col_vars))
 for r in row_codes:
